@@ -4,11 +4,11 @@
     {
         static void Main()
         {
-            TableScheme tableScheme = TableScheme.ReadFile("Scheme\\BTS.json");
+            TableScheme tableScheme = TableScheme.ReadFile("Scheme\\Book.json");
+            Table table = ReadTable.TableRead(tableScheme, "Book.csv");
 
             try
             {
-                Table table = ReadTable.TableRead(tableScheme, "BTS.csv");
                 foreach (Column key in table.Rows[0].Data.Keys)
                 {
                     Console.WriteLine(key.Name + " ");

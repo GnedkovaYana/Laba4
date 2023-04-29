@@ -4,7 +4,7 @@
     {
         public static Table TableRead(TableScheme tableScheme, string path)
         {
-            string[] file = File.ReadAllLines("Table\\" + path);
+            string[] file = File.ReadAllLines(path);
             Table table = new Table();
             for (int i = 0; i < file.Length; i++)
             {
@@ -29,8 +29,17 @@
                 {
                     case ("uint"):
                         {
-                            if (uint.TryParse(el[j], out uint number))
-                                row.Data.Add(tableScheme.Columns[j], number);
+                            if (uint.TryParse(el[j], out uint uNumber))
+                                row.Data.Add(tableScheme.Columns[j], uNumber);
+                            else
+                                throw new ArgumentException($"В файле {path} в строке {i + 1} в столбце {j + 1} записаны некорректные данные");
+                        }
+                        break;
+
+                    case ("int"):
+                        {
+                            if (int.TryParse(el[j], out int intNumber))
+                                row.Data.Add(tableScheme.Columns[j], intNumber);
                             else
                                 throw new ArgumentException($"В файле {path} в строке {i + 1} в столбце {j + 1} записаны некорректные данные");
                         }
