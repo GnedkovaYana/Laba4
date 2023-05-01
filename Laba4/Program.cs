@@ -11,12 +11,14 @@
             {
                 foreach (Column key in table.Rows[0].Data.Keys)
                 {
-                    Console.WriteLine(key.Name + " ");
+                    Console.Write(key.Name + " ");
                 }
+                Console.WriteLine();
                 foreach (Row row in table.Rows)
+                {
                     Console.WriteLine(string.Join(" ", row.Data.Values));
+                }
             }
-
             catch (ArgumentException ex)
             {
                 Console.Clear();
